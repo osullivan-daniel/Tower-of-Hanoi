@@ -1,6 +1,8 @@
 Tower-of-Hanoi
 ==============
 
-Tower of Hanoi Game in Java
+Very Simple Tower of Hanoi Game in Java
+
+Basic Gui, Sound and SQL linked Leader Board
 
 Download avalalable
