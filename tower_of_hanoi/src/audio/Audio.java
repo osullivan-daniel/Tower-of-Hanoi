@@ -2,8 +2,10 @@ package audio;
 
 import java.io.File;
 
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.DataLine;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.AudioInputStream;
 
@@ -20,22 +22,22 @@ public class Audio
 			//Set path to file
 			java.io.File currentDir = new java.io.File("");			
 			File audioIn = new File(currentDir.getAbsolutePath() + ("/Program Files/Btoh.toh"));
-			//Set Clip as audio file
-			clip = AudioSystem.getClip();
+			//create AudioInputStream
 		    AudioInputStream inputStream = AudioSystem.getAudioInputStream(audioIn);
-		    //Open the audio file
+		    //Get Format
+		    AudioFormat format = inputStream.getFormat();
+		    //Create a DataLine from the format
+		    DataLine.Info info = new DataLine.Info(Clip.class, format);
+	        //Set Audio Clip
+		    clip = (Clip)AudioSystem.getLine(info);
+	        //open Audio Clip
 		    clip.open(inputStream);
-		    //Create control to decrease volume
-		    FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-		    gainControl.setValue(-10.0f);
-		    //Set loop continuously
-		    clip.loop(Clip.LOOP_CONTINUOUSLY);
-		    //Start clip
-		    clip.start(); 
+		    //play the clip
+		    clip.start();		    
 		} 
 		catch (Exception e) 
 		{
-			System.err.println(e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}
 	}
 	
@@ -47,17 +49,22 @@ public class Audio
 			//Set path to file
 			java.io.File currentDir = new java.io.File("");
 			File audioIn = new File(currentDir.getAbsolutePath() + ("/Program Files/Wtoh.toh"));
-			//Set Clip as audio file
-			clip = AudioSystem.getClip();
+			//create AudioInputStream
 		    AudioInputStream inputStream = AudioSystem.getAudioInputStream(audioIn);
-		    //Open the audio file
+		    //Get Format
+		    AudioFormat format = inputStream.getFormat();
+		    //Create a DataLine from the format
+		    DataLine.Info info = new DataLine.Info(Clip.class, format);
+	        //Set Audio Clip
+		    clip = (Clip)AudioSystem.getLine(info);
+	        //open Audio Clip
 		    clip.open(inputStream);
-		    //Start clip
-		    clip.start(); 
+		    //play the clip
+		    clip.start();	
 		} 
 		catch (Exception e) 
 		{
-			System.err.println(e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}		
 	}
 	
@@ -72,23 +79,25 @@ public class Audio
 	{   
 		try 
 		{
-			
-			Clip movePiece = AudioSystem.getClip();
 			//Set path to file
 			java.io.File currentDir = new java.io.File("");
 			File audioIn = new File(currentDir.getAbsolutePath() + ("/Program Files/Mtoh.toh"));
-			//Set Clip as audio file
+			//create AudioInputStream
 		    AudioInputStream inputStream = AudioSystem.getAudioInputStream(audioIn);
+		    //Get Format
+		    AudioFormat format = inputStream.getFormat();
+		    //Create a DataLine from the format
+		    DataLine.Info info = new DataLine.Info(Clip.class, format);
+	        //Set Audio Clip
+		    Clip movePiece = (Clip)AudioSystem.getLine(info);
+	        //open Audio Clip
 		    movePiece.open(inputStream);
-		    //Create control to increase volume
-		    FloatControl gainControl = (FloatControl) movePiece.getControl(FloatControl.Type.MASTER_GAIN);
-		    gainControl.setValue(+5.0f);
 		    //play the clip
-		    movePiece.start(); 
+		    movePiece.start();
 		} 
 		catch (Exception e) 
 		{
-			System.err.println(e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}		
 	}
 }
