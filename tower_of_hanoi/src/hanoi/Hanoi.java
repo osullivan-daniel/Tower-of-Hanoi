@@ -78,7 +78,6 @@ public class Hanoi
 		hanoi.pack();
 	}
 	
-	
 	public static void resetGame()
 	{
 		//reset screen
